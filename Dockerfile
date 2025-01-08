@@ -21,8 +21,6 @@ COPY tsconfig.json ./
 
 # Copy the rest of the application code
 COPY ./src ./src
-COPY ./characters ./characters
-COPY ./.env ./
 
 # Install dependencies and build the project
 RUN pnpm i
@@ -43,8 +41,6 @@ WORKDIR /app
 COPY --from=builder /app/package.json /app/
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /app/src /app/src
-COPY --from=builder /app/characters /app/characters
-COPY --from=builder /app/.env /app/
 COPY --from=builder /app/dist /app/dist
 COPY --from=builder /app/tsconfig.json /app/
 COPY --from=builder /app/pnpm-lock.yaml /app/
